@@ -1,4 +1,8 @@
 .cubo {
     border:1px solid #000;
-    height: 100px;
+    margin: 0;
+}
+
+.articulo {
+    margin-top: 5%;
 }
