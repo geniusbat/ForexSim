@@ -18,8 +18,8 @@ import org.restlet.resource.ResourceException;
 
 import com.google.appengine.repackaged.com.google.gson.Gson;
 
-import pack_forexSim.Article;
-import pack_forexSim.News;
+import pack_forexSim.model.newsApi.Article;
+import pack_forexSim.model.newsApi.News;
 
 
 public class TestNewsApiClass extends HttpServlet {

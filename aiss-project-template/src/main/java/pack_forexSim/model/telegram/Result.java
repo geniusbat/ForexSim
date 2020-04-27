@@ -1,27 +1,28 @@
 
-package pack_forexSim.controller.telegram;
+package pack_forexSim.model.telegram;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "ok",
-    "result"
+    "update_id",
+    "message"
 })
-public class Messages {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Result {
 
-    @JsonProperty("ok")
-    private Boolean ok;
-    @JsonProperty("result")
-    private List<Result> result = null;
+    @JsonProperty("update_id")
+    private Integer updateId;
+    @JsonProperty("message")
+    private Message message;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -29,38 +30,38 @@ public class Messages {
      * No args constructor for use in serialization
      * 
      */
-    public Messages() {
+    public Result() {
     }
 
     /**
      * 
-     * @param result
-     * @param ok
+     * @param updateId
+     * @param message
      */
-    public Messages(Boolean ok, List<Result> result) {
+    public Result(Integer updateId, Message message) {
         super();
-        this.ok = ok;
-        this.result = result;
+        this.updateId = updateId;
+        this.message = message;
     }
 
-    @JsonProperty("ok")
-    public Boolean getOk() {
-        return ok;
+    @JsonProperty("update_id")
+    public Integer getUpdateId() {
+        return updateId;
     }
 
-    @JsonProperty("ok")
-    public void setOk(Boolean ok) {
-        this.ok = ok;
+    @JsonProperty("update_id")
+    public void setUpdateId(Integer updateId) {
+        this.updateId = updateId;
     }
 
-    @JsonProperty("result")
-    public List<Result> getResult() {
-        return result;
+    @JsonProperty("message")
+    public Message getMessage() {
+        return message;
     }
 
-    @JsonProperty("result")
-    public void setResult(List<Result> result) {
-        this.result = result;
+    @JsonProperty("message")
+    public void setMessage(Message message) {
+        this.message = message;
     }
 
     @JsonAnyGetter

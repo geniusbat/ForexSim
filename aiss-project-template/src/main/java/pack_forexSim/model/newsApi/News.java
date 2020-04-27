@@ -1,5 +1,5 @@
 
-package pack_forexSim;
+package pack_forexSim.model.newsApi;
 
 import java.util.HashMap;
 import java.util.List;

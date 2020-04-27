@@ -1,5 +1,5 @@
 
-package pack_forexSim.controller.telegram;
+package pack_forexSim.model.telegram;
 
 import java.util.HashMap;
 import java.util.Map;

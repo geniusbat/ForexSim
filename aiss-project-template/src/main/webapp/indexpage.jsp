@@ -20,42 +20,36 @@
     <h2 class="container-fluid">
         Forex$im
     </h2>
+    <!-- Searcher -->
     <div class="row" style="margin-left:2%;">
-    	<select id="cars">
+    	<select id="listaProductos">
 		  <option value="volvo">Volvo</option>
 		  <option value="saab">Saab</option>
 		  <option value="opel">Opel</option>
 		  <option value="audi">Audi</option>
 		</select>
-		<button onclick="getCar()">Search</button>
+		<button onclick="getGraph()">Search</button>
     </div>
-    <div id="searchRes"></div>
+    <div id="searchRes"><p>Look for a product first</p></div>
     <script>
-    	function getCar() {
-    	var coche = document.getElementById("cars");
-    	document.getElementById("searchRes").innerHTML=coche.value;
-    	}
-    </script>
-    <div class="row">
-        <div id="tester" class="col-6"></div>
-		<script>
-			TESTER = document.getElementById('tester');
-			var trace1 = {
+    	function getGraph() {
+        	var producto = document.getElementById("listaProductos");
+        	document.getElementById("searchRes").innerHTML=producto.value;
+			var trace = {
 			  x: [1, 2, 3, 4],
 			  y: [10, 15, 13, 17],
 			  type: 'scatter'
 			};
-			var data = [trace1];
-			var layout = { 
-			  font: {size: 18},
-				width:screen.width/2
-			};
-			var config = {responsive: true}
-			Plotly.newPlot(TESTER, data, layout, config );
-		</script>
-
+			this.graphShow(trace);
+    	}
+    </script>
+    <script src="/js/graphShow.js"></script>
+    <!-- Content -->
+    <div class="row">
+    	<!-- Graph -->
+        <div id="graph" class="col-6"></div>
 		<!-- Noticias -->
-		<div class="col-6 cubo">
+		<div class="col-6 cubo noticiasDiv">
 			<c:forEach items="${requestScope.noticias}" var="noticias">
 	            <div class="articulo">
 	                <h3>
@@ -69,6 +63,18 @@
 			</c:forEach>
 		</div>
     </div>		
-
+    <!-- Formulario de compra/venta -->
+	<form name="buyProducto" action="/TelegramBuyController" onsubmit="sendMessageTelegram()">
+		<label for="quantity">Quantity:</label>
+		<input type="number" id="quantity" name="quantity" min="1" max="1000">
+		<input type="hidden" id="productoForm" name="producto">
+		<input type="submit" value="Buy!">
+		<script>
+			function sendMessageTelegram() {
+				document.getElementById("productoForm").value = document.getElementById("listaProductos").value;
+				return true;
+			}
+		</script>
+	</form>
 </body>
 </html>
