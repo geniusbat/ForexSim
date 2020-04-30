@@ -1,5 +1,5 @@
 function graphShow(trace) {
-	TESTER = document.getElementById('graph');
+	var TESTER = document.getElementById('graph');
 	var config = {responsive: true}
 	var data = [trace];
 	var layout = { 

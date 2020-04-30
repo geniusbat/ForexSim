@@ -26,24 +26,35 @@ public class TelegramBuyController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//See if message possible to send
-		ClientResource crA = new ClientResource("https://api.telegram.org/bot"+token+"/getUpdates");
-		ObjectMapper objectMapperA = new ObjectMapper();
-		//Messages resultado = objectMapperA.readValue(crA.get(String.class), Messages.class);
-		//Send message
-		//if (resultado.getOk()) {
-			String uri = "https://api.telegram.org/bot"+token+"/sendMessage?chat_id="+chatId+"&text=";
-			RequestDispatcher rd = null;
-			Integer cantidad = Integer.parseInt(request.getParameter("quantity"));
-			String producto = request.getParameter("producto");
-			if ((producto!=null)&&(cantidad>0)) {
-				String cadena = "Usuario X compró "+String.valueOf(cantidad)+"cantidad de "+ producto;
-				uri = uri+URLEncoder.encode(cadena,"UTF-8");
-				//TODO enviar al cliente
-				ClientResource crB = new ClientResource(uri);
-				crB.get();
-				response.getWriter().append(uri);
+		String dq =request.getParameter("quantity");
+		String dx =request.getParameter("product");
+		System.out.println(dq+" "+dx);
+		if ((dq!=" ")&&(dx!=null)) {
+			ClientResource crA = new ClientResource("https://api.telegram.org/bot"+token+"/getUpdates");
+			ObjectMapper objectMapperA = new ObjectMapper();
+			//Messages resultado = objectMapperA.readValue(crA.get(String.class), Messages.class);
+			//Send message
+			//if (resultado.getOk()) {
+				String uri = "https://api.telegram.org/bot"+token+"/sendMessage?chat_id="+chatId+"&text=";
+				RequestDispatcher rd = null;
+				Integer cantidad = Integer.parseInt(dq);
+				String producto = dx;
+				if (cantidad>0) {
+					String cadena = "Usuario X compró "+String.valueOf(cantidad)+"cantidad de "+ producto;
+					uri = uri+URLEncoder.encode(cadena,"UTF-8");
+					//TODO enviar al cliente
+					ClientResource crB = new ClientResource(uri);
+					crB.get();
+					response.getWriter().append(uri);
+				}
+				else {
+					response.sendRedirect("errorPages/errorTelegramBuy.html");
+				}
+			//}
 			}
-		//}
+		else {
+			response.sendRedirect("errorPages/errorTelegramBuy.html");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
