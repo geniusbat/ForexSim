@@ -45,10 +45,9 @@ public class NoticiasController  extends HttpServlet{
 		ClientResource cr = new ClientResource(uri);
 		ObjectMapper objectMapper = new ObjectMapper();
 		News noticias = objectMapper.readValue(cr.get(String.class), News.class);
-		rd = request.getRequestDispatcher("/indexpage.jsp");
+		rd = request.getRequestDispatcher("/moreNews.jsp");
 		List<Article> listaNoticias = new ArrayList<Article>();
-		listaNoticias.add(noticias.getArticles().get(0));
-		listaNoticias.add(noticias.getArticles().get(1));
+		listaNoticias.addAll(noticias.getArticles());
 		request.setAttribute("noticias", listaNoticias);
 		rd.forward(request, response);
 	}

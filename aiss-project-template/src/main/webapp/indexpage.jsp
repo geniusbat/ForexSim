@@ -21,6 +21,10 @@
     <h2 class="container-fluid">
         Forex$im
     </h2>
+    <!-- Usuario -->
+    <div class="row" style="margin-left:2%;">
+    	Usuario:
+    </div>
     <!-- Searcher -->
     <div class="row" style="margin-left:2%;">
 		<form id="searchForm" action="SearchController" method="post">
@@ -32,7 +36,7 @@
     <div id="searchRes"><p>Look for a product first</p></div>
     <script>
     	function setUp() {
-    		if ("<c:out value='${requestScope.datesAsString}'/>"!="") {
+    		if ("<c:out value='${requestScope.datesAsString}'/>"!="") { //Printea la gráfica automáticamente
     			getGraph();
     		}
     	}
@@ -68,6 +72,7 @@
 	                <a href="${noticias.url}"><button>Go to news!</button></a>
 	            </div>
 			</c:forEach>
+			<a href="/NoticiasController"><button style="margin-top:1%">-->More news!</button></a>
 		</div>
     </div>		
     <!-- Formulario de compra/venta -->
