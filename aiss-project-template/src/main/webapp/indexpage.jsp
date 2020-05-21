@@ -22,9 +22,6 @@
         Forex$im
     </h2>
     <!-- Usuario -->
-    <div class="row" style="margin-left:2%;">
-    	Usuario:
-    </div>
     <!-- Searcher -->
     <div class="row" style="margin-left:2%;">
 		<form id="searchForm" action="SearchController" method="post">
@@ -77,6 +74,8 @@
     </div>		
     <!-- Formulario de compra/venta -->
 	<form name="buyProducto" action="/TelegramBuyController" onsubmit="sendMessageTelegram()">
+		<label for="user">Username:</label>
+		<input type="text" id="user" name="user" pattern="[A-Za-z]*" required>
 		<label for="quantity">Quantity:</label>
 		<input type="number" id="quantity" name="quantity" min="1" max="1000" required>
 		<input type="hidden" id="productoForm" name="product">

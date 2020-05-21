@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>More News</title>
+    <title>Telegram</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -20,22 +20,10 @@
     <h2 class="container-fluid">
         Forex$im
     </h2>
-	<h3 style="margin-left: 2%">
-		Más noticias
-	</h3>
-	<div class="container cont-noticias">
-		<c:forEach items="${requestScope.noticias}" var="noticias">
-	          <div class="articulo noticia">
-	              <h3>
-	                  <c:out value="${noticias.title}"/>
-	              </h3>
-	              <p>
-	                  <c:out value="${noticias.content}"/>
-	              </p>
-	              <a href="${noticias.url}"><button>Go to news!</button></a>
-	          </div>
-		</c:forEach>
-	</div>
-	<a href="/SetUp"><button style="margin-left: 2%">Go back</button></a>
-</body>
-</html>
+    <p style="margin-left: 2%">
+    	Your action was sent as: "
+    	${requestScope.UserBuy}
+    	" to Telegram.
+    </p>	
+	<a href="https://t.me/joinchat/NOPaaRR98-fcSofLHPiSlw" style="margin-left: 2%">Join ForexSim Telegram!</a>
+ </body>

@@ -28,8 +28,9 @@ public class TelegramBuyController extends HttpServlet {
 		//See if message possible to send
 		String dq =request.getParameter("quantity");
 		String dx =request.getParameter("product");
+		String userName = request.getParameter("user");
 		System.out.println(dq+" "+dx);
-		if ((dq!=" ")&&(dx!=null)) {
+		if ((dq!="")&&(dx!=null)) {
 			ClientResource crA = new ClientResource("https://api.telegram.org/bot"+token+"/getUpdates");
 			ObjectMapper objectMapperA = new ObjectMapper();
 			//Messages resultado = objectMapperA.readValue(crA.get(String.class), Messages.class);
@@ -40,12 +41,14 @@ public class TelegramBuyController extends HttpServlet {
 				Integer cantidad = Integer.parseInt(dq);
 				String producto = dx;
 				if (cantidad>0) {
-					String cadena = "Usuario X compró "+String.valueOf(cantidad)+"cantidad de "+ producto;
+					String cadena = userName +" bought "+String.valueOf(cantidad)+" quantity of "+ producto;
 					uri = uri+URLEncoder.encode(cadena,"UTF-8");
 					//TODO enviar al cliente
+					request.setAttribute("UserBuy",cadena);
 					ClientResource crB = new ClientResource(uri);
 					crB.get();
-					response.getWriter().append(uri);
+					rd = request.getRequestDispatcher("/telegramSuccess.jsp");
+					rd.forward(request, response);
 				}
 				else {
 					response.sendRedirect("errorPages/errorTelegramBuy.html");

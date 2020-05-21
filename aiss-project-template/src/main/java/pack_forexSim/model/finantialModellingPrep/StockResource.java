@@ -15,7 +15,7 @@ public class StockResource {
 	public PriceHistorySearch getHistory(String ticker) throws UnsupportedEncodingException{
 		
 		String query = URLEncoder.encode(ticker,"UTF-8");
-		String uri = "https://financialmodelingprep.com/api/v3/historical-price-full/" + query + "?timeseries=20";
+		String uri = "https://financialmodelingprep.com/api/v3/historical-price-full/" + query + "?timeseries=20" + "&apikey=20846ad3179cd4125cd97b1d1ab77e9d";
 		log.log(Level.FINE,"financialmodelingprep uri: " + uri);
 		ClientResource cr = new ClientResource(uri);
 		PriceHistorySearch search = cr.get(PriceHistorySearch.class);
