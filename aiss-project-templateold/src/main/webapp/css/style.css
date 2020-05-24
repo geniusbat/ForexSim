@@ -1,0 +1,38 @@
+.cubo {
+    border:1px solid #000;
+    margin:0px;
+    width:50vw;
+}
+h2 {
+    height: auto;
+    width: auto;
+    padding-top: 1%;
+    padding-bottom: 0.5%;
+    padding-left: 2%;
+    background-color: black;
+    color: whitesmoke;
+}
+.articulo {
+    margin-top: 5%;
+    border-bottom: 1px solid black;
+}
+
+body {
+    background-color: grey;
+    /*overflow-x: hidden;*/
+}
+
+.noticiasDiv {
+	overflow-y: scroll;
+	overflow-x: auto;
+	height:40%;
+}
+.cont-noticias {
+	border: 1px solid #000;
+	height:70vh;
+	overflow-y: scroll;
+	overflow-x: auto;
+}
+.noticia {
+	background-color:gray;
+}
